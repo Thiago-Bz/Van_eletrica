@@ -1,3 +1,10 @@
 **Ativação do protocolo Can no Beaglebone:
 https://www.embarcados.com.br/can-com-beaglebone-black-e-python/
 
+Inicializando o CAN
+...... ./can_start.sh
+debian@beaglebone:~$ sudo ifconfig can1 down
+debian@beaglebone:~$ sudo ip link set can1 up type can bitrate 500000 loopback on
+debian@beaglebone:~$ sudo ifconfig can1 up                                                                                                                                                                         
+debian@beaglebone:~$ candump any -x
+  can1  RX - -  078   [7]  F0 FD 43 1F C3 1A E7
