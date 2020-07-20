@@ -71,8 +71,9 @@ int main(int argc, char **argv)
 	//printf("char %c\n",data1_msb);
 	//printf("int %d\n",data1_lsb);
 		
-	int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
-	printf("Data1: %d\n",data1);
+	//int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
+	printf("Data Frame: %d\n",frame.data[3]);
+	printf("Data Frame: %0x\n",frame.data[3]);
 		
 	printf("\r\n");
 	}
