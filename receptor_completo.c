@@ -52,15 +52,27 @@ int main(int argc, char **argv)
 	for (i = 0; i < frame.can_dlc; i++)
 		printf("%02X ",frame.data[i]);
 		
-	data1_msb = frame.data[0] + frame.data[1];
-	data1_lsb = frame.data[2] + frame.data[3];
+	unsigned pow = 10;
+    	while(frame.data[1] >= pow)
+        pow *= 10;
+    	data1_msb = frame.data[0] * pow + frame.data[1];
+		
+	unsigned pow = 10;
+    	while(frame.data[3] >= pow)
+        pow *= 10;
+    	data1_lsb = frame.data[2] * pow + frame.data[3];
+		
+		
+		
+	//data1_msb = frame.data[0] + frame.data[1];
+	//data1_lsb = frame.data[2] + frame.data[3];
 	
 	printf("int %d\n",data1_msb);
 	//printf("char %c\n",data1_msb);
 	printf("int %d\n",data1_lsb);
 		
 	int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
-	printf("%d\n",data1);
+	printf("Data1: %d\n",data1);
 		
 	printf("\r\n");
 	}
