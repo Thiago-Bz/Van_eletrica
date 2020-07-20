@@ -86,6 +86,8 @@ int main(int argc, char **argv)
 	*/
 	
 	data1 = ((frame.data[0] << 8) & 0xFF00) | (frame.data[1] & 0xFF);
+	printf("Data1: %0x\n",data1);
+	printf("Data1: %d\n",data1);
 		
 	printf("\r\n");
 	}
