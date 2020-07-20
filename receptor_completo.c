@@ -17,7 +17,8 @@ int main(int argc, char **argv)
 	struct sockaddr_can addr;
 	struct ifreq ifr;
 	struct can_frame frame;
-	int data1, data1_msb, data1_lsb;
+	int data1;
+	unsigned int data1_msb, data1_lsb;
 
 	printf("CAN Sockets Receive Demo\r\n");
 
@@ -52,7 +53,7 @@ int main(int argc, char **argv)
 	for (i = 0; i < frame.can_dlc; i++)
 		printf("%02X ",frame.data[i]);
 		
-	unsigned base = 10;
+	/*unsigned base = 10;
     	while(frame.data[1] >= base)
         base *= 10;
     	data1_msb = frame.data[0] * base + frame.data[1];
@@ -60,15 +61,15 @@ int main(int argc, char **argv)
 	while(frame.data[3] >= base)
         base *= 10;
     	data1_lsb = frame.data[2] * base + frame.data[3];
-		
-		
+	*/	
+	data1_msb = (frame.data[0]<<24) | (frame.data[1]<<16)| (frame.data[2]<<8) | frame.data[3];	
 		
 	//data1_msb = frame.data[0] + frame.data[1];
 	//data1_lsb = frame.data[2] + frame.data[3];
 	
 	printf("int %d\n",data1_msb);
 	//printf("char %c\n",data1_msb);
-	printf("int %d\n",data1_lsb);
+	//printf("int %d\n",data1_lsb);
 		
 	int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
 	printf("Data1: %d\n",data1);
