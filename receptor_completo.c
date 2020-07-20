@@ -52,15 +52,14 @@ int main(int argc, char **argv)
 	for (i = 0; i < frame.can_dlc; i++)
 		printf("%02X ",frame.data[i]);
 		
-	unsigned pow = 10;
-    	while(frame.data[1] >= pow)
-        pow *= 10;
-    	data1_msb = frame.data[0] * pow + frame.data[1];
+	unsigned base = 10;
+    	while(frame.data[1] >= base)
+        base *= 10;
+    	data1_msb = frame.data[0] * base + frame.data[1];
 		
-	unsigned pow = 10;
-    	while(frame.data[3] >= pow)
-        pow *= 10;
-    	data1_lsb = frame.data[2] * pow + frame.data[3];
+	while(frame.data[3] >= base)
+        base *= 10;
+    	data1_lsb = frame.data[2] * base + frame.data[3];
 		
 		
 		
