@@ -54,6 +54,10 @@ int main(int argc, char **argv)
 		
 	data1_msb = frame.data[0] + frame.data[1];
 	data1_lsb = frame.data[2] + frame.data[3];
+	
+	printf("int %d\n",data1_msb);
+	//printf("char %c\n",data1_msb);
+	printf("int %d\n",data1_lsb);
 		
 	int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
 	printf("%d\n",data1);
