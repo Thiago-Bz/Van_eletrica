@@ -28,6 +28,8 @@ int main(int argc, char **argv)
 	strcpy(ifr.ifr_name, "can1" );
 	ioctl(s, SIOCGIFINDEX, &ifr);
 
+while(1){	
+	
 	memset(&addr, 0, sizeof(addr));
 	addr.can_family = AF_CAN;
 	addr.can_ifindex = ifr.ifr_ifindex;
@@ -57,4 +59,5 @@ int main(int argc, char **argv)
 	}
 
 	return 0;
+}
 }
