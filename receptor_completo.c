@@ -52,6 +52,7 @@ while(1){
 		printf("%02X ",frame.data[i]);
 
 	printf("\r\n");
+	}
 
 	if (close(s) < 0) {
 		perror("Close");
@@ -59,5 +60,4 @@ while(1){
 	}
 
 	return 0;
-}
 }
