@@ -50,49 +50,17 @@ int main(int argc, char **argv)
 
 	printf("0x%03X [%d] ",frame.can_id, frame.can_dlc);
 
-	for (i = 0; i < frame.can_dlc; i++)
+	for (i = 0; i < frame.can_dlc; i++)        //printa os 8 bytes da mensagem no barramento
 		printf("%02X ",frame.data[i]);
 		
-	/*unsigned base = 10;
-    	while(frame.data[1] >= base)
-        base *= 10;
-    	data1_msb = frame.data[0] * base + frame.data[1];
 		
-	while(frame.data[3] >= base)
-        base *= 10;
-    	data1_lsb = frame.data[2] * base + frame.data[3];
-	*/	
-	//data1_msb = (frame.data[0]<<24) | (frame.data[1]<<16)| (frame.data[2]<<8) | frame.data[3];	
-		
-	//data1_msb = frame.data[0] + frame.data[1];
-	//data1_lsb = frame.data[2] + frame.data[3];
-	
-	//printf("int %d\n",data1_msb);
-	//printf("char %c\n",data1_msb);
-	//printf("int %d\n",data1_lsb);
-		
-	//int data1 = (int)(((unsigned)data1_msb << 8) | data1_lsb); //concatena os valores das posições dos 2 primeiros bytes do can frame
-	/*printf("Data Frame0: %d\n",frame.data[0]);
-	printf("Data Frame0: %0x\n",frame.data[0]);
-		
-	printf("Data Frame1: %d\n",frame.data[1]);
-	printf("Data Frame1: %0x\n",frame.data[1]);
-		
-	printf("Data Frame2: %d\n",frame.data[2]);
-	printf("Data Frame2: %0x\n",frame.data[2]);
-		
-	printf("Data Frame3: %d\n",frame.data[3]);
-	printf("Data Frame3: %0x\n",frame.data[3]);
-	*/
-	
-	data1 = ((frame.data[0] << 8) & 0xFF00) | (frame.data[1] & 0xFF);
+	data1 = ((frame.data[0] << 8) & 0xFF00) | (frame.data[1] & 0xFF); //concatenando 2 bytes. Data1 é um inteiro
 	printf("Data1: %0x\n",data1);
 	printf("Data1: %d\n",data1);
 		
 	printf("\r\n");
 	}
-	
-	
+		
 	
 	if (close(s) < 0) {
 		perror("Close");
