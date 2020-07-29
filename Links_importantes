@@ -23,3 +23,7 @@ config-pin P2.27 can
 sudo /sbin/ip link set can1 up type can bitrate 500000
 
 echo "Pinos de CAN0 e CAN1 configurados!..."
+
+-----------------
+link para achar o id do painel do carro
+https://hackaday.com/2015/06/18/a-real-dash-for-a-truck-simulator/
