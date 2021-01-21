@@ -17,14 +17,14 @@ int main(int argc, char **argv)
 	struct ifreq ifr;
 	struct can_frame frame;
 
-	printf("CAN Sockets Demo\r\n");
+	printf("Iniciando comunicacao CAN\r\n");
 
 	if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
 		perror("Socket");
 		return 1;
 	}
 
-	strcpy(ifr.ifr_name, "vcan0" );
+	strcpy(ifr.ifr_name, "can1" );
 	ioctl(s, SIOCGIFINDEX, &ifr);
 
 	memset(&addr, 0, sizeof(addr));
@@ -36,8 +36,8 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	frame.can_id = 0x280;  //endereço para RPM 
-	frame.can_dlc = 2; //tamanho do dado. Tem que verificar se e extendido
+	frame.can_id = 0x280;  //endereço para RPM 0x280 //0x470 e luzes aviso de baterias
+	frame.can_dlc = 8; //tamanho do dado. Tem que verificar se e extendido
 	sprintf(frame.data, "62"); // valor referente a 4000 RPM
 
 	if (write(s, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
