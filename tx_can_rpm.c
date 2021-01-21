@@ -36,9 +36,9 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	frame.can_id = 0x555;
-	frame.can_dlc = 5;
-	sprintf(frame.data, "Hello");
+	frame.can_id = 0x280;  //endereço para RPM 
+	frame.can_dlc = 2; //tamanho do dado. Tem que verificar se e extendido
+	sprintf(frame.data, "62"); // valor referente a 4000 RPM
 
 	if (write(s, &frame, sizeof(struct can_frame)) != sizeof(struct can_frame)) {
 		perror("Write");
