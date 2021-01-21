@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	struct sockaddr_can addr;
 	struct ifreq ifr;
 	struct can_frame frame;
-  char data;
+  	char data[8] = {'2', '0', '1', '0', '0', '0', '0', 'F'}; //Para o endereço das luzes(0x470), o primeiro byte sao as setas. 1 - esquerda, 2- direita e 3 os dois; o ultimo byte e lanternas
 
 	printf("Iniciando comunicacao CAN\r\n");
 
@@ -37,9 +37,10 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	frame.can_id = 0x280;  //endereço para RPM 0x280 //0x470 e luzes aviso de baterias
+	frame.can_id = 0x470;  //endereço para RPM 0x280 //0x470 e luzes (setas) aviso de baterias 2, 0 , 1, 0 , 0 , 0 , 0 , 0 
 	frame.can_dlc = 8; //tamanho do dado. Tem que verificar se e extendido
-  data = [1, 0, 0, 62];
+  	//data = ['2', '0', '1', '0', '0', '0', '0', '0'];
+	//data = [1, 0, 0, 62];
   
 	sprintf(frame.data, data); // valor referente a 4000 RPM
 
